@@ -28,7 +28,10 @@ gulp.task('sass', function () {
     ];
     return gulp.src('./source/scss/**/*.scss')
         .pipe($.sourcemaps.init())
-        .pipe($.sass().on('error', $.sass.logError))
+        .pipe($.sass({
+            outputStyle: 'nested',
+            includePaths: ['./node_modules/bootstrap/scss']
+        }).on('error', $.sass.logError))
         .pipe($.postcss(plugins))
         .pipe($.if(options.env == 'prod', $.cleanCss()))
         .pipe($.sourcemaps.write())
@@ -52,6 +55,11 @@ gulp.task('babel', () =>
         .pipe(gulp.dest('./public/js'))
         .pipe(browserSync.stream())
 );
+gulp.task('vendorsJs', () =>
+    gulp.src(['./node_modules/jquery/dist/**/jquery.min.js','./node_modules/bootstrap/dist/js/**/bootstrap.bundle.min.js'])
+        .pipe($.concat('vendors.js'))
+        .pipe(gulp.dest('./public/js'))
+);
 
 gulp.task('images', () => 
     gulp.src('./source/img')
@@ -67,7 +75,7 @@ gulp.task('browser-sync', function(){
 
 gulp.task('clean', function () {
     return gulp.src('./public', {read: false})
-        .pipe(clean());
+        .pipe($.clean());
 });
 
 gulp.task('deploy', function () {
@@ -81,5 +89,5 @@ gulp.task('watch', gulp.parallel('browser-sync', function () {
     gulp.watch('./source/js/*.js', gulp.series('babel'));
 }))
 
-gulp.task('bulid', gulp.series('clean', 'pug', 'sass', 'babel', 'images', 'watch'))
-gulp.task('default', gulp.series('pug', 'sass', 'babel', 'images', 'watch'))
+gulp.task('bulid', gulp.series('clean', 'pug', 'sass', 'babel','vendorsJs', 'images', 'watch'))
+gulp.task('default', gulp.series('pug', 'sass', 'babel','vendorsJs', 'images', 'watch'))

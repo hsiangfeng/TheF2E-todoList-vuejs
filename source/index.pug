@@ -1,0 +1,93 @@
+extend layout/header.pug
+block content
+    #app
+        .container
+            .card
+                .card-header
+                    ul.nav.nav-tabs.justify-content-center.align-items-center
+                        li.nav-item
+                            a.nav-link(href='#' @click="visibility = 'all'" :class="{'active': visibility == 'all'}") My Tasks
+                        li.nav-item
+                            a.nav-link(href='#' @click="visibility = 'progress'" :class="{'active': visibility == 'progress'}") In Progress
+                        li.nav-item
+                            a.nav-link(href='#' @click="visibility = 'completed'" :class="{'active': visibility == 'completed'}") Completed
+                .card-body
+                    .card
+                        .card-header
+                            h3  Type Something Here…
+                        .card-body
+                            form
+                                label(for='inputEmail4') DateTime
+                                .form-row
+                                    .form-group.col-md-6
+                                        input#inputEmail4.form-control(type='date')
+                                    .form-group.col-md-6
+                                        input#inputPassword4.form-control(type='time')
+                                .form-group
+                                    label(for='inputAddress') Title
+                                    input#inputAddress.form-control(type='text', placeholder='1234 Main St')
+                                .form-group
+                                    label(for='inputAddress2') Comment
+                                    input#inputAddress2.form-control(type='text', placeholder='Apartment, studio, or floor')
+                                .form-row
+                                    .form-group.col-md-6
+                                        button.btn.btn-outline-danger.btn-block(type='submit') Cancel
+                                    .form-group.col-md-6
+                                        button.btn.btn-outline-primary.btn-block(type='submit') Add Task
+                .card-footer
+                    .todo-card(v-for="item in todoList")
+                        .card-body
+                            input(type='checkbox', :id='item.id' v-model="item.completed")
+                            label.todo-completed(:for="item.id" :class="{'completed': item.completed}") {{item.title}}
+                            ul.card-main
+                                li.star
+                                    a(href='#')
+                                        i.far.fa-star
+                        .card-footer
+                            i.far.fa-calendar-alt
+                            |  {{item.todoDate}}|{{item.todoTime}}
+
+
+
+
+        header.header
+            a.newTodo  ＋　Add Task
+            form.todolist
+                .todo-header
+                    h1 Type Something Here…
+                hr
+                .todo-body
+                    .data-time
+                        label(for='deadline')
+                            i.far.fa-calendar-alt
+                            |   Deadline
+                        input.todoDate.inputdata(type='date' v-model="newTodoDate")
+                        input.todoTime.inputdata(type='time' v-model="newTodoTime")
+                    .comment
+                        label(for='comment')
+                            i.far.fa-comment
+                            |   Comment
+                        input.todo-title(type="text", placeholder='Type your memo here…' v-model="newTodos")
+                .todo-footer
+                    a.close(href='#', type='reset')
+                        i.far.fa-times-circle
+                        |    Cancel
+                    a.todoAdd(href='#')
+                        i.far.fa-plus-square
+                        |    Add Task
+        section.content
+            .todo-card(v-for="item in todoList")
+                .card-body
+                    input(type='checkbox', :id='item.id' v-model="item.completed")
+                    label.todo-completed(:for="item.id" :class="{'completed': item.completed}") {{item.title}}
+                    ul.card-main
+                        li.star
+                            a(href='#')
+                                i.far.fa-star
+                .card-footer
+                    i.far.fa-calendar-alt
+                    |  {{item.todoDate}}|{{item.todoTime}}
+    script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+    script(src="js/vendors.js")
+    script(src='js/all.js')
+
