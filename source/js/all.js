@@ -141,3 +141,6 @@ $(document).ready(function () {
         $(this).tab('show')
     })
 })
+window.onload = function(){
+    $('.loading').fadeOut();
+}
