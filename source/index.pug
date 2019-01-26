@@ -48,7 +48,6 @@ block content
                                 .col-md-10(v-if="item.id == cacheTodoId")
                                     input.form-control(type='text', v-model='cacheTitle' @keyup.esc="cancelEdit()" @keyup.enter="doneEdit(item)")
                                 .col-md-2.text-right
-                                    a(href='#').far.fa-star &nbsp&nbsp 
                                     a(href='#' @click.prevent="removeTodo(item),countTodoList" :id="item.id").fas.fa-trash-alt
                                 .col-md-6
                                     .far.fa-calendar-alt.btn.btn-outline-primary.disabled

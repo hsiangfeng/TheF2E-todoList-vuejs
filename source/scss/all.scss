@@ -1,7 +1,12 @@
 @import "functions";
 @import "variables";
 @import "bootstrap";
-
+body{
+  background-image: url('../img/bg1.jpg');
+  background-position: center;
+  background-size: cover;
+  font-family: $font-family-sans-serif;
+}
 .completed {
     text-decoration: line-through
 }

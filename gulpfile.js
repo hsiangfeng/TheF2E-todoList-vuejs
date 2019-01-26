@@ -62,9 +62,9 @@ gulp.task('vendorsJs', () =>
 );
 
 gulp.task('images', () => 
-    gulp.src('./source/img')
+    gulp.src('./source/img/**/*')
         .pipe($.if(options.env == 'prod', $.image()))
-        .pipe(gulp.dest('./public/img'))
+        .pipe(gulp.dest('./public/img/'))
 );
 
 gulp.task('browser-sync', function(){
