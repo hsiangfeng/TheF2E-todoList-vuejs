@@ -34,6 +34,7 @@ let app = new Vue({
             this.newTodoDate = '';
             this.newTodoTime = '';
             this.newTodoComment = '';
+            this.countTodo();
         },
         removeTodo: function (todo) {
             let newTodo = '';
@@ -89,7 +90,7 @@ let app = new Vue({
             _data.forEach(item => {
                 this.todoList.push(item);
             })
-            console.log(_data);
+            this.countTodo();
         }
     },
     computed: {
@@ -135,12 +136,12 @@ let app = new Vue({
 })
 
 
-$(document).ready(function () {
-    $('#nav-tab a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-})
+// $(document).ready(function () {
+//     $('#nav-tab a').on('click', function (e) {
+//         e.preventDefault()
+//         $(this).tab('show')
+//     })
+// })
 window.onload = function(){
     $('.loading').fadeOut();
 }

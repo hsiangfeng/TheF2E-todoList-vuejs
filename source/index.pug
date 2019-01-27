@@ -50,10 +50,10 @@ block content
                                 .col-md-2.text-right
                                     a(href='#' @click.prevent="removeTodo(item),countTodoList" :id="item.id").fas.fa-trash-alt
                                 .col-md-6
-                                    .far.fa-calendar-alt.btn.btn-outline-primary.disabled
+                                    .far.fa-calendar-alt.btn.btn-outline-primary.disabled(v-if="item.todoDate == '' && item.todoTime == ''")
                                         |  {{item.todoDate}}||{{item.todoTime}}
                                 .col-md-6
-                                    .far.fa-comment.btn.btn-outline-primary.disabled
+                                    .far.fa-comment.btn.btn-outline-primary.disabled(v-if="!item.comment == ''")
                                         | {{item.comment}}
                     .text-right
                         a(href='#' @click.prevent="allRemove") 清除所有任務
