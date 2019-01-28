@@ -91,7 +91,7 @@ let app = new Vue({
                 this.todoList.push(item);
             })
             this.countTodo();
-        }
+        },
     },
     computed: {
         filterTodoList: function () {
@@ -128,6 +128,11 @@ let app = new Vue({
             this.allLen = this.todoList.length;
             this.progressLen = progressTodosLen.length;
             this.completedLen = completedTodosLen.length;
+        },
+        updataTodo:function(){
+            console.log('更新資料狀態');
+            const todoStatus = this.todoList;
+            localStorage.setItem('todos', JSON.stringify(todoStatus));
         }
     }, created() {
         this.countTodo();
@@ -135,13 +140,6 @@ let app = new Vue({
     },
 })
 
-
-// $(document).ready(function () {
-//     $('#nav-tab a').on('click', function (e) {
-//         e.preventDefault()
-//         $(this).tab('show')
-//     })
-// })
 window.onload = function(){
     $('.loading').fadeOut();
 }
