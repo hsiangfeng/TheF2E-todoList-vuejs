@@ -141,18 +141,18 @@ var app = new Vue({
       this.allLen = this.todoList.length;
       this.progressLen = progressTodosLen.length;
       this.completedLen = completedTodosLen.length;
+    },
+    updataTodo: function updataTodo() {
+      console.log('更新資料狀態');
+      var todoStatus = this.todoList;
+      localStorage.setItem('todos', JSON.stringify(todoStatus));
     }
   },
   created: function created() {
     this.countTodo();
     this.pastTodos();
   }
-}); // $(document).ready(function () {
-//     $('#nav-tab a').on('click', function (e) {
-//         e.preventDefault()
-//         $(this).tab('show')
-//     })
-// })
+});
 
 window.onload = function () {
   $('.loading').fadeOut();
