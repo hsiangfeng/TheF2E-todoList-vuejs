@@ -40,7 +40,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('babel', () =>
-    gulp.src('./source/**/*.js')
+    gulp.src('./source/**/all.js')
         .pipe($.sourcemaps.init())
         .pipe($.babel({
             presets: ['@babel/env']
@@ -56,7 +56,7 @@ gulp.task('babel', () =>
         .pipe(browserSync.stream())
 );
 gulp.task('vendorsJs', () =>
-    gulp.src(['./node_modules/jquery/dist/**/jquery.min.js','./node_modules/bootstrap/dist/js/**/bootstrap.bundle.min.js'])
+    gulp.src(['./node_modules/jquery/dist/**/jquery.min.js','./node_modules/bootstrap/dist/js/**/bootstrap.bundle.min.js','./source/**/vue.js'])
         .pipe($.concat('vendors.js'))
         .pipe(gulp.dest('./public/js'))
 );
