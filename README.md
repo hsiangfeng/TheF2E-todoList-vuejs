@@ -8,6 +8,7 @@
 ## 使用技術&練習技術
 - Vuejs
 - JavaScript(ES6)
+- LocalStorage
 - Gulp
 - scss
 - pug
